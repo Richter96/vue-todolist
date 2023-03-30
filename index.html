@@ -19,19 +19,28 @@
         <header>
             <h1 class="text-center my-4">{{titolo}}</h1>
         </header>
-        <div class="container-lists p-4 border border-1">
-            <input type="text" v-model.trim="newItemName" @keyup.enter="addNewItems()">
+        <div class="container-sm container-lists p-4 border border-1">
+            <input type="text" v-model.trim.lo="newItemName" @keyup.enter="addNewItems()">
             <button class="add mx-3" @click="addNewItems()">Aggiungi alla lista</button>
 
-            <h3>Lista della spesa</h3>
-            <ul>
-                <li v-for="(item, index) in items" >
-
-                   <span :class="item.done == true ? 'text-decoration-line-through' : '' " @click="item.done = !item.done">{{item.nome}}</span> 
-                    <a class="text-decoration-none ps-3" @click="itemDelete(index)">❌</a>
-                </li>
-                
-            </ul>
+            <div class="col-4 mt-3 fs-4">
+                <h3>Lista della spesa</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item list-group-item-action" v-for="(item, index) in items" >
+                       <span :class="item.done == true ? 'text-decoration-line-through' : '' " @click="(item.done = !item.done), addCompleted(index) ">{{item.nome}}</span> 
+                        <a class="text-decoration-none ps-3" @click="itemDelete(index)"><i class="fa-solid fa-xmark"></i></a>
+                    </li>     
+                </ul>
+            </div>
+            <div class="col-4 fs-4">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item list-group-item-action">LISTA SPUNTATA</li>
+                    <li class="list-group-item list-group-item-action" v-for="(item, index) in completed" >
+                       <span :class="item.done == true ? 'text-decoration-line-through' : '' " @click="item.done = !item.done">{{item.nome}}</span> 
+                       <a class="text-decoration-none ps-3" @click="itemDeleteCompleted(index)"><i class="fa-solid fa-xmark"></i></a>
+                    </li>     
+                </ul>
+            </div>
         </div>
 
 

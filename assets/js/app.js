@@ -19,14 +19,13 @@ createApp({
     return {
       titolo: 'Cose da fare oggi!',
       newItemName: '',
-      itemsStructure : {
-        nome:'',
-        done: false
-      },
+
+      completed: [],
+
       items: [
         {
           nome: 'pasta',
-          done: true
+          done: false
         },
         {
           nome: 'carote',
@@ -35,28 +34,60 @@ createApp({
         {
           nome: 'uova',
           done: false
-        }
+        },
+        {
+          nome: 'pesce spada',
+          done: false
+        },
+        {
+          nome: 'cavolfiore',
+          done: false
+        },
+        {
+          nome: 'spaghetti',
+          done: false
+        },
+        {
+          nome: 'barilla',
+          done: false
+        },
       ],
+
     }
   },
   methods: {
-    addNewItems(){
+    addNewItems() {
       console.log('aggiungi nuovo elemento');
       console.log(this.newItemName);
       const newItem = {
-        nome:"",
-        done:false
-      } 
-      newItem.nome = this.newItemName
+        nome: "",
+        done: false
+      }
+      newItem.nome = this.newItemName.toLowerCase()
       console.log(newItem)
-      this.items.push(newItem)
-      this.newItemName=""
+      this.items.unshift(newItem)
+      this.newItemName = ""
     },
-    itemDelete(i){
+    itemDelete(i) {
       console.log('rimuovi dalla lista', i)
-      this.items.splice(i,1)
+      console.log(this.items[i])
+      this.items.splice(i, 1)
+    },
+    itemDeleteCompleted(i) {
+      console.log('rimuovi dalla lista', i)
+      console.log(this.items[i])
+      this.completed.splice(i, 1)
+    },
+    addCompleted(i) {
+      console.log('sposta');
+      this.completed.push(this.items[i])
+      this.items.splice(i, 1)
+    },
+    itemRecover(i) {
+      console.log('rimuovi dalla lista', i)
+      this.items.splice(i, 1)
     }
   },
 
-  
+
 }).mount('#app')
