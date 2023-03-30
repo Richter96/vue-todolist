@@ -1,3 +1,9 @@
 body{
     background-color: tan;
 }
+
+.container-lists {
+    width: 1200px;
+    margin: auto;
+    height: 800px;
+}

@@ -16,7 +16,18 @@
 
 <body>
     <div id="app">
-        <h1>{{titolo}}</h1>
+        <header>
+            <h1 class="text-center my-4">{{titolo}}</h1>
+        </header>
+        <div class="container-lists p-4 border border-1">
+            <input type="text" v-model="newItemName" >
+            <button class="add mx-3" @click="addNewItems()">Aggiungi alla lista</button>
+
+            <h3>Lista della spesa</h3>
+            <ul>
+                <li v-for="(item, index) in items">{{item.nome}} {{}}</li>
+            </ul>
+        </div>
 
 
     </div>
