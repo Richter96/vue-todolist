@@ -26,7 +26,8 @@
             <h3>Lista della spesa</h3>
             <ul>
                 <li v-for="(item, index) in items" >
-                   <span :class="item.done == true ? 'text-decoration-line-through' : '' ">{{item.nome}}</span> 
+
+                   <span :class="item.done == true ? 'text-decoration-line-through' : '' " @click="item.done = !item.done">{{item.nome}}</span> 
                     <a class="text-decoration-none ps-3" @click="itemDelete(index)">❌</a>
                 </li>
                 
